@@ -1,0 +1,24 @@
+@charset "UTF-8";
+.grid-container  {
+  display: grid;
+  grid-gap: 5px; 
+  grid-template-columns: auto auto auto auto;
+  padding: 5px; 
+}
+.grid-item {
+   background-color: #e87979; 
+  border: 1px solid #e87979;
+  padding: 5px; 
+  text-align: center;
+}
+#wrapper{
+	font-size: 20px;
+}
+#header{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+#footer{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}

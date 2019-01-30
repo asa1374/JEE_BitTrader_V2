@@ -1,0 +1,8 @@
+package domain;
+
+import lombok.Data;
+
+public @Data class OrderDTO {
+	private String orderID,customerID,EmployeeID,orderDate,ShipperID;
+
+}
