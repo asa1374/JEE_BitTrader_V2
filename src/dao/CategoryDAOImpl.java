@@ -1,8 +1,11 @@
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import domain.CategoryDTO;
+import enums.Vendor;
+import factory.DatabaseFactory;
 
 public class CategoryDAOImpl implements CategoryDAO{
 	private static CategoryDAOImpl instance = new CategoryDAOImpl();
@@ -11,7 +14,12 @@ public class CategoryDAOImpl implements CategoryDAO{
 	
 	@Override
 	public void insertCategory(CategoryDTO cat) {
-		// TODO Auto-generated method stub
+		try {
+			DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().createStatement().executeUpdate("");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

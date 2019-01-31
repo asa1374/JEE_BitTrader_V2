@@ -13,6 +13,9 @@ public class Commander {
 		case MOVE:
 			cmd = new MoveCommand(request,response);
 			break;
+		case REGISTER :
+			cmd = new MoveCommand(request,response);
+			break;
 		case LOGIN :
 			cmd = new LoginCommand(request,response);
 			break;

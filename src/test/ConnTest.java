@@ -16,15 +16,14 @@ public class ConnTest {
 			 Class.forName("oracle.jdbc.OracleDriver");
 			 conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "oracle", "password");
 			 stmt = conn.createStatement();
-			 rs = stmt.executeQuery("SELECT * FROM member");
-			 String name = "";
+			 rs = stmt.executeQuery("SELECT COUNT(*) AS COUNT FROM EMPLOYEES");
+			 String count = "";
 			 while(rs.next()) {
-				 name = rs.getString("name");
+				 count = rs.getString("COUNT");
 			 }
-			 System.out.println("회원의 이름은 "+name);
+			 System.out.println("회원의 수 "+count);
 		 }catch(Exception e) {
 			 e.printStackTrace();   //로그를 찍어
-			 
 		 }finally {
 			 try {
 				conn.close();
