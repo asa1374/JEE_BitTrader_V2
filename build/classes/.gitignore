@@ -1,7 +1,10 @@
-/controller/
-/factory/
-/enums/
-/test/
-/dao/
 /command/
+/controller/
+/dao/
 /domain/
+/enums/
+/factory/
+/pool/
+/service/
+/sql/
+/test/

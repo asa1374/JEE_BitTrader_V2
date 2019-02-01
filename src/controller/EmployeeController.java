@@ -16,10 +16,7 @@ import service.EmployeeServiceImpl;
 
 @WebServlet("/employee.do")
 public class EmployeeController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	EmployeeService service = EmployeeServiceImpl.getInstance();
-	
+	private static final long serialVersionUID = 1L;	
 	protected void service(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
 		
@@ -32,13 +29,6 @@ public class EmployeeController extends HttpServlet {
 			break;
 		case REGISTER :
 			System.out.println("*******2.레지스터");
-			EmployeeDTO emp = new EmployeeDTO();
-			emp.setName(request.getParameter("name"));
-			emp.setManager(request.getParameter("manager"));
-			emp.setBirthDate(request.getParameter("birthday"));
-			emp.setPhoto(request.getParameter("photo"));
-			emp.setNote(request.getParameter("desc"));
-			service.registEmployee(emp);
 			Carrier.forward(request, response);
 			break;
 

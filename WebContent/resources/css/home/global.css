@@ -6,8 +6,8 @@
   padding: 5px; 
 }
 .grid-item {
-   background-color: #e87979; 
-  border: 1px solid #e87979;
+   background-color: rgba(251, 108, 108, 0.8); 
+  border: 1px solid rgba(251, 108, 108, 0.8);
   padding: 5px; 
   text-align: center;
 }
