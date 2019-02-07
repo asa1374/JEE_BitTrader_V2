@@ -10,15 +10,13 @@ import lombok.Data;
 public class Oracle implements Database{
 	private Connection conn;
 	private String url,user,driver,password;
-	
-	
+		
 	@Override
 	public Connection getConnection() {
-		Connection conn = null;
+		conn = null;
 		try {
 			// "oracle.jdbc.OracleDriver"
 			Class.forName(Props.ORA_DRIVER.getValue());
-			
 			conn = DriverManager.getConnection(
 					Props.DB_URL.getValue(),
 					Props.DB_USER.getValue(),

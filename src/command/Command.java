@@ -13,14 +13,20 @@ public class Command implements Order{
 	
 	public Command(HttpServletRequest request,HttpServletResponse response) {
 		setRequest(request);
+		setAction(request.getParameter("cmd"));
+		String dir = request.getParameter("dir");
+		System.out.println("디렉토리 :"+dir);
+		if(dir==null) {
+			setDomain(request.getServletPath().split("/")[1].replace(".do", ""));
+		}else {
+			setDomain(dir);
+		}
+		setPage(request.getParameter("page"));
 		execute();	
 	}
 	
 	@Override
 	public void execute() {
-		this.setAction(request.getParameter("cmd"));
-		this.setDomain(request.getServletPath().split("/")[1].replace(".do", ""));
-		this.setPage(request.getParameter("page"));
 		this.view = "/WEB-INF/view/"+domain+"/"+page+".jsp";
 	}
 }

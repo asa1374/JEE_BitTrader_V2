@@ -9,5 +9,6 @@ public class Receiver {
 	public static void init(HttpServletRequest request,HttpServletResponse response) {
 		System.out.println("====2.리시버 진입====");
 		cmd = Commander.order(request,response);
+		System.out.println("리시브 내 : "+ Receiver.cmd.getView());
 	}
 }

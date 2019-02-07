@@ -18,6 +18,12 @@ $('#emp_register').click(function(){
 	location.assign('employee.do?cmd=move&page=register');
 });
 $('#cust_login').click(function(){
-	location.assign('employee.do?cmd=login&page=login');
+	location.assign('customer.do?cmd=move&page=signin');
+});
+$('#emp_access').click(function(){
+	location.assign('employee.do?cmd=move&page=access');
+});
+$('#cust_join').click(function(){
+	location.assign('customer.do?cmd=move&page=signup');
 });
 </script>

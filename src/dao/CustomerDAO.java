@@ -10,6 +10,7 @@ public interface CustomerDAO {
 	public List<CustomerDTO> retrieveCategoris(String searchWord);
 	public CustomerDTO retrieveCustomer(String searchWord);
 	public int countCustomer();
+	public boolean existCustomer(CustomerDTO cus);
 	public void modifyCustomer(CustomerDTO cus);
 	public void removeCustomer(CustomerDTO cus);
 }

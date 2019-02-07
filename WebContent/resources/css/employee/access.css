@@ -1,29 +1,29 @@
 @charset "UTF-8";
 #side_menu{
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 3;
 }
 #content{
-    grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-start: 3;
+    grid-column-end: 7;
 }
 
 #item_2{
-    grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-start: 3;
+    grid-column-end: 7;
 }
 #item_4{
-    grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-start: 3;
+    grid-column-end: 7;
 }
 
 #item_11{
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
 }
 #item_12{
-    grid-column-start: 3;
-    grid-column-end: 5;
+    grid-column-start: 4;
+    grid-column-end: 7;
 }
 
 #form input[type=text], select {

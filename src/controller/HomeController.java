@@ -18,6 +18,7 @@ public class HomeController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("ctx", request.getContextPath());
 		session.setAttribute("css", session.getAttribute("ctx")+"/resources/css/");
+		session.setAttribute("img", session.getAttribute("ctx")+"/resources/img/");
 		session.setAttribute("js", session.getAttribute("ctx")+"/resources/js/");
 		if(session.getAttribute("employee")==null) {
 			request.setAttribute("compo", "register");

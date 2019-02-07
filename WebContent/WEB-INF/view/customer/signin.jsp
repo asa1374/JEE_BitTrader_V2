@@ -8,15 +8,15 @@
 <div class="grid-item" id="content">
 <form id="form" name="form" >
 	<div class="grid-container">
-	    <div class="grid-item" id="item_1">사원번호</div>
-	    <div class="grid-item" id="item_2"><input type="text" id="empno" name="empno" value="1000"></div>
-	    <div class="grid-item" id="item_3">이 름</div>
-	    <div class="grid-item" id="item_4"><input type="text" id="name" name="name" value="김경민"></div>
+	    <div class="grid-item" id="item_1">아이디</div>
+	    <div class="grid-item" id="item_2"><input type="text" id="cusid" name="cusid" value="asa1374"></div>
+	    <div class="grid-item" id="item_3">비 번</div>
+	    <div class="grid-item" id="item_4"><input type="text" id="password" name="password" value="1"></div>
 	    <div class="grid-item" id="item_11"><input type="submit" id="confirm_btn" value='확 인'></div>
 	    <div class="grid-item" id="item_12"><input type="reset" id="cancel_btn" value='취 소'> </div>
-	    <input type="hidden" name="cmd" value="access" />
-	    <input type="hidden" name="dir" value="customer" />
-	    <input type="hidden" name="page" value="list" />
+	    <input type="hidden" name="cmd" value="signin" />
+	    <input type="hidden" name="dir" value="category" />
+	    <input type="hidden" name="page" value="main" />
 	</div>
 </form>
 </div>
@@ -26,7 +26,7 @@ $('#confirm_btn').click(function(){
 	var empno = $('#empno').val();
 	var name = $('#name').val();
 	$('#form')
-	.attr('action', '${ctx}/employee.do')
+	.attr('action', '${ctx}/customer.do')
 	.submit();
 });
 </script>

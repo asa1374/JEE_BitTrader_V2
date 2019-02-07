@@ -38,8 +38,15 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public boolean existsEmployee(String searchWord) {
-		return false;
+	public boolean existsEmployee(EmployeeDTO emp) {
+		boolean access = false;
+		access = dao.existsEmployee(emp);
+		if(access) {
+			access = true;
+		}else {
+			access = false;
+		}
+		return access;
 	}
 
 	@Override

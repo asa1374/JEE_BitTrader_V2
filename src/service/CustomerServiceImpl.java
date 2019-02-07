@@ -13,8 +13,7 @@ public class CustomerServiceImpl implements CustomerService{
 	CustomerDAOImpl dao;
 	@Override
 	public void resistCustomer(CustomerDTO cus) {
-		// TODO Auto-generated method stub
-		
+		dao.resistCustomer(cus);	
 	}
 
 	@Override
@@ -51,6 +50,15 @@ public class CustomerServiceImpl implements CustomerService{
 	public void removeCustomer(CustomerDTO cus) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public boolean existCustomer(CustomerDTO cus) {
+		boolean res = false;
+		res = dao.existCustomer(cus);
+		if(res) {
+			res = true;
+		}
+		return res;
 	}
 
 }

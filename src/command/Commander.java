@@ -10,11 +10,15 @@ public class Commander {
 		Command cmd = null;
 		System.out.println("====3.커멘더 진입====");
 		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())) {
-		case MOVE:
+		case MOVE: 
 			cmd = new Command(request,response);
 			break;
-		case REGISTER :
+		case REGISTER : case SIGNUP :
+			System.out.println("커멘더에서 등록하는곳$$$$$$$$$$");
 			cmd = new CreateCommand(request, response);
+			break;
+		case ACCESS : case SIGNIN :
+			cmd = new ExistCommand(request, response);
 			break;
 		default:
 			break;
