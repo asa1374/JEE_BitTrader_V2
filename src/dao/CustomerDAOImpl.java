@@ -33,11 +33,10 @@ public class CustomerDAOImpl implements CustomerDAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@Override
-	public boolean existCustomer(CustomerDTO cus) {
+	public boolean existCustomerID(CustomerDTO cus) {
 		boolean ok = false;
 		try {
 			String sql = CustomerSQL.SIGNIN.toString();
@@ -63,15 +62,35 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public List<CustomerDTO> retrieveCategoris(String searchWord) {
+	public List<CustomerDTO> selectCategoris(String searchWord) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CustomerDTO retrieveCustomer(String searchWord) {
-		// TODO Auto-generated method stub
-		return null;
+	public CustomerDTO selectCustomer(CustomerDTO cus) {
+		CustomerDTO cust = null;
+		try {
+			String sql = CustomerSQL.SIGNIN.toString();
+			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection()
+			.prepareStatement(sql);
+			ps.setString(1, cus.getCustomerID());
+			ps.setString(2, cus.getPassword());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				cust.setAddress(rs.getString("ADDRESS"));
+				cust.setCity(rs.getString("CITY"));
+				cust.setCustomerID(rs.getString("CUSTOMER_ID"));
+				cust.setCustomerName(rs.getString("CUSTOMER_NAME"));
+				cust.setPassword(rs.getString("PASSWORD"));
+				cust.setPostalCode(rs.getString("POSTAL_CODE"));
+				cust.setSsn(rs.getString("SSN"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cust;
 	}
 
 	@Override

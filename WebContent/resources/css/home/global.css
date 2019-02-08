@@ -2,7 +2,7 @@
 .grid-container  {
   display: grid;
   grid-gap: 5px; 
-  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
   padding: 5px; 
 }
 .grid-item {
@@ -16,9 +16,17 @@
 }
 #header{
     grid-column-start: 1;
-    grid-column-end: 7;
+    grid-column-end: 5;
+}
+#side_menu{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+#content{
+    grid-column-start: 2;
+    grid-column-end: 5;
 }
 #footer{
     grid-column-start: 1;
-    grid-column-end: 7;
+    grid-column-end: 5;
 }

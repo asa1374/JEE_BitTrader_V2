@@ -7,7 +7,9 @@ import domain.OrderDTO;
 public class OrderDAOImpl implements OrderDAO{
 	private static OrderDAOImpl instance = new OrderDAOImpl();
 	private OrderDAOImpl() {}
-	public static OrderDAOImpl getInstance() {return instance;}
+	public static OrderDAOImpl getInstance() {
+		return instance;
+	}
 	@Override
 	public void registOrder(OrderDTO or) {
 		// TODO Auto-generated method stub

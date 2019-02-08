@@ -8,6 +8,7 @@ public class SupplierDAOImpl implements SupplierDAO{
 	private static SupplierDAOImpl instance = new SupplierDAOImpl();
 	private SupplierDAOImpl() {}
 	public static SupplierDAOImpl getInstance() {return instance;}
+
 	@Override
 	public void registSupplier(SupplierDTO sup) {
 		// TODO Auto-generated method stub

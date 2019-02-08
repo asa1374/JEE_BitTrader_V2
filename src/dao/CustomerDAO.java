@@ -7,10 +7,10 @@ import domain.CustomerDTO;
 public interface CustomerDAO {
 	public void resistCustomer(CustomerDTO cus);
 	public List<CustomerDTO> bringCustomerList();
-	public List<CustomerDTO> retrieveCategoris(String searchWord);
-	public CustomerDTO retrieveCustomer(String searchWord);
+	public List<CustomerDTO> selectCategoris(String searchWord);
+	public CustomerDTO selectCustomer(CustomerDTO cus);
 	public int countCustomer();
-	public boolean existCustomer(CustomerDTO cus);
+	public boolean existCustomerID(CustomerDTO cus);
 	public void modifyCustomer(CustomerDTO cus);
 	public void removeCustomer(CustomerDTO cus);
 }
