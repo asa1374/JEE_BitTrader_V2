@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.CustomerDTO;
@@ -17,7 +18,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 	@Override
 	//customerID,customerName,password,address,city,postalCode,ssn
 	public void resistCustomer(CustomerDTO cus) {
-		try {
+		try {//customer_id,customer_name,password,address,city,postal_code,ssn,phone
 			String sql = CustomerSQL.SIGNUP.toString();
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
 			ps.setString(1, cus.getCustomerID());
@@ -27,6 +28,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 			ps.setString(5, cus.getCity());
 			ps.setString(6, cus.getPostalCode());
 			ps.setString(7, cus.getSsn());
+			ps.setString(8, cus.getPhone());
 			int rs = ps.executeUpdate();
 			System.out.println((rs==1)? "성공" : "실패");
 		} catch (Exception e) {
@@ -57,8 +59,29 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 	@Override
 	public List<CustomerDTO> bringCustomerList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<CustomerDTO> list = new ArrayList<>();
+		try {
+			String sql = CustomerSQL.LIST.toString();
+			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			CustomerDTO cus = null;
+			while(rs.next()) {
+				cus = new CustomerDTO();
+					cus.setAddress(rs.getString("ADDRESS"));
+					cus.setCity(rs.getString("CITY"));
+					cus.setCustomerID(rs.getString("CUSTOMER_ID"));
+					cus.setCustomerName(rs.getString("CUSTOMER_NAME"));
+					cus.setPhone(rs.getString("PHONE"));
+					cus.setPostalCode(rs.getString("POSTAL_CODE"));
+					cus.setSsn(rs.getString("SSN"));
+					list.add(cus);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(list.size());
+		return list;
 	}
 
 	@Override
@@ -78,13 +101,15 @@ public class CustomerDAOImpl implements CustomerDAO{
 			ps.setString(2, cus.getPassword());
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				cust.setAddress(rs.getString("ADDRESS"));
-				cust.setCity(rs.getString("CITY"));
+				cust = new CustomerDTO();
 				cust.setCustomerID(rs.getString("CUSTOMER_ID"));
 				cust.setCustomerName(rs.getString("CUSTOMER_NAME"));
 				cust.setPassword(rs.getString("PASSWORD"));
+				cust.setAddress(rs.getString("ADDRESS"));
+				cust.setCity(rs.getString("CITY"));
 				cust.setPostalCode(rs.getString("POSTAL_CODE"));
 				cust.setSsn(rs.getString("SSN"));
+				cust.setPhone(rs.getString("PHONE"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

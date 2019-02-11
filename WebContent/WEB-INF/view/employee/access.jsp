@@ -8,7 +8,7 @@
 <form id="form" name="form" >
 	<div class="grid-item">
 	    <div class="grid-item" >사원번호</div>
-	    <div class="grid-item" ><input type="text" id="empno" name="empno" value="1000"></div>
+	    <div class="grid-item" ><input type="text" id="empno" name="empno" value="1020"></div>
 	    <div class="grid-item" >이 름</div>
 	    <div class="grid-item" ><input type="text" id="name" name="name" value="김경민"></div>
 	    <div class="grid-item" ><input type="submit" id="confirm_btn" value='확 인'></div>

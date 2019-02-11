@@ -34,6 +34,10 @@
 		  <span class="input-group-addon" id="basic-addon1">주민번호</span>
 		  <input type="text" id="ssn" name="ssn" class="form-control" placeholder="SSN" aria-describedby="basic-addon1">
 	    </div>
+	    <div class="input-group">
+		  <span class="input-group-addon" id="basic-addon1">핸드폰번호</span>
+		  <input type="text" id="phone" name="phone" class="form-control" placeholder="PHONE" aria-describedby="basic-addon1">
+	    </div>
 		<button type="button" class="btn btn-default btn-lg" id="confirm_btn">
 			<span class="glyphicon glyphicon-ok" aria-hidden="true">확인</span> 
 		</button>
