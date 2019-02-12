@@ -8,5 +8,6 @@ public class Constant {
 	public static final String USERNAME = "oracle";
 	public static final String PASSWORD = "password";
 	public static final String VENDOR = "ORACLE";
+	public static final StringBuffer COUNT = new StringBuffer();
 	
 }

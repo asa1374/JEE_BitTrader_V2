@@ -10,6 +10,7 @@ import domain.CustomerDTO;
 import enums.CustomerSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
+import proxy.Pagination;
 
 public class CustomerDAOImpl implements CustomerDAO{
 	private static CustomerDAOImpl instance = new CustomerDAOImpl();
@@ -58,15 +59,20 @@ public class CustomerDAOImpl implements CustomerDAO{
 		return ok;
 	}
 	@Override
-	public List<CustomerDTO> bringCustomerList() {
+	public List<CustomerDTO> bringCustomerList(Pagination page) {
 		List<CustomerDTO> list = new ArrayList<>();
 		try {
-			String sql = CustomerSQL.LIST.toString();
+			String sql = CustomerSQL.LIST.toString();			
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
+			System.out.println("getStartRow"+page.getStartRow());
+			System.out.println("getEndRow"+page.getEndRow());
+			ps.setString(1, page.getEndRow());
+			ps.setString(2, page.getStartRow());
 			ResultSet rs = ps.executeQuery();
 			CustomerDTO cus = null;
 			while(rs.next()) {
 				cus = new CustomerDTO();
+					cus.setCount(rs.getString("RNUM"));
 					cus.setAddress(rs.getString("ADDRESS"));
 					cus.setCity(rs.getString("CITY"));
 					cus.setCustomerID(rs.getString("CUSTOMER_ID"));
@@ -120,8 +126,21 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public int countCustomer() {
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		try {
+			String count = CustomerSQL.COUNT.toString();
+			PreparedStatement ps;
+			ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(count);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				res = Integer.parseInt(rs.getString("COUNT"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("!!!!!!!!!!!!!!!!!!카운트값"+res);
+		return res;
 	}
 
 	@Override

@@ -26,7 +26,7 @@
 	  </tr>
 	  <c:forEach items="${list}" var="cust" >
 		  <tr>
-		    <td>1</td>
+		    <td>${cust.count}</td>
 		    <td>${cust.customerID}</td>
 		    <td>${cust.customerName}</td>
 		    <td>${cust.ssn}</td>
@@ -38,17 +38,27 @@
 		  </tr>
 	  </c:forEach>
 	</table>
-	<div style="height: 50px"></div>    
+	<div style="height: 50px"></div>
+<form id="list_form">
 	<div class="center">
 	  <div class="pagination">
 	  <a href="#">&laquo;</a>
 	  <a href="#" class="active">1</a>
-	  <a href="#">2</a>
+	  <a href="#" id="2page">2</a>
 	  <a href="#">3</a>
 	  <a href="#">4</a>
 	  <a href="#">5</a>
 	  <a href="#">&raquo;</a>
 	  </div>
 	</div>
+</form>
 </div>
 <jsp:include page="../home/bottom.jsp"/>
+<script>
+$('#2page').click(function(){
+	location.assign('${ctx}/customer.do?cmd=cus_list&page=list&page_num=2&page_size=5');
+	
+	//page_num, page_size, cmd, dir, page
+	//cmd=list&page=list&page_num=2&page_size=5
+});
+</script>
