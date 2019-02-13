@@ -10,7 +10,9 @@ import domain.CustomerDTO;
 import enums.CustomerSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
+import proxy.PageProxy;
 import proxy.Pagination;
+import proxy.Proxy;
 
 public class CustomerDAOImpl implements CustomerDAO{
 	private static CustomerDAOImpl instance = new CustomerDAOImpl();
@@ -59,11 +61,13 @@ public class CustomerDAOImpl implements CustomerDAO{
 		return ok;
 	}
 	@Override
-	public List<CustomerDTO> bringCustomerList(Pagination page) {
+	public List<CustomerDTO> bringCustomerList(Proxy pxy) {
 		List<CustomerDTO> list = new ArrayList<>();
 		try {
+			Pagination page = ((PageProxy)pxy).getPage();
 			String sql = CustomerSQL.LIST.toString();			
-			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
+			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE)
+									.getConnection().prepareStatement(sql);
 			System.out.println("getStartRow"+page.getStartRow());
 			System.out.println("getEndRow"+page.getEndRow());
 			ps.setString(1, page.getEndRow());
@@ -91,7 +95,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public List<CustomerDTO> selectCategoris(String searchWord) {
+	public List<CustomerDTO> selectCategoris(Proxy pxy) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -125,7 +129,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public int countCustomer() {
+	public int countCustomer(Proxy pxy) {
 		int res = 0;
 		try {
 			String count = CustomerSQL.COUNT.toString();
@@ -136,7 +140,6 @@ public class CustomerDAOImpl implements CustomerDAO{
 				res = Integer.parseInt(rs.getString("COUNT"));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("!!!!!!!!!!!!!!!!!!카운트값"+res);

@@ -1,26 +1,23 @@
 package command;
 
-
 import java.util.List;
-
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import domain.CustomerDTO;
 import enums.Action;
+import proxy.PageProxy;
 import proxy.Proxy;
+import proxy.RequestProxy;
 import service.CustomerServiceImpl;
 
 public class ListCommand extends Command{
-	public ListCommand(HttpServletRequest request,HttpServletResponse response) {
-		super(request, response);
+	public ListCommand(Map<String,Proxy> pxy) {
+		RequestProxy req = (RequestProxy) pxy.get("req");
+		HttpServletRequest request = req.getRequest();
 		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())) {
 		case CUS_LIST:
-			System.out.println("$$$$$$$$$$$$$LIST에서 page값"+request.getParameter("page"));
-			System.out.println("$$$$$$$$$$$$$LIST에서 page_num값"+request.getParameter("page_num"));
-			System.out.println("$$$$$$$$$$$$$LIST에서 page_size값"+request.getParameter("page_size"));
 			List<CustomerDTO> list = CustomerServiceImpl.getInstance()
-					.bringCustomerList(new Proxy().getPage());
+					.bringCustomerList(new PageProxy().getPage());
 			request.setAttribute("list", list);
 			break;
 			
