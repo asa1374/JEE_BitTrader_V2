@@ -12,11 +12,13 @@ import enums.Action;
 import proxy.Proxy;
 import proxy.RequestProxy;
 import proxy.PageProxy;
+import proxy.Pagination;
 import service.CustomerServiceImpl;
 import service.EmployeeServiceImpl;
 
 public class ExistCommand extends Command{
 	public ExistCommand(Map<String,Proxy> pxy) {
+		super(pxy);
 		RequestProxy req = (RequestProxy) pxy.get("req");
 		HttpServletRequest request = req.getRequest();
 		HttpSession session = request.getSession();
@@ -27,7 +29,12 @@ public class ExistCommand extends Command{
 			emp.setName(request.getParameter("name"));
 			boolean exitst = EmployeeServiceImpl.getInstance().existsEmployee(emp);
 			if(exitst) {
-				List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(new PageProxy().getPage());
+				System.out.println("사원 접근 허용");
+				Proxy paging = new Pagination();
+				paging.carryOut(request);
+				Proxy pagePxy = new PageProxy();
+				pagePxy.carryOut(paging);
+				List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(pagePxy);
 				request.setAttribute("list", list);
 			}else {
 				System.out.println("접속 불가");

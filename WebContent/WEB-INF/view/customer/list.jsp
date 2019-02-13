@@ -43,11 +43,9 @@
 	<div class="center">
 	  <div class="pagination">
 	  <a href="#">&laquo;</a>
-	  <a href="#" class="active">1</a>
-	  <a href="#" id="2page">2</a>
-	  <a href="#">3</a>
-	  <a href="#">4</a>
-	  <a href="#">5</a>
+	  <c:forEach begin="1" end="5" varStatus="status" >
+	  <a href="#" id="${status.count }page">${status.count }</a>
+	  </c:forEach>
 	  <a href="#">&raquo;</a>
 	  </div>
 	</div>
@@ -55,8 +53,9 @@
 </div>
 <jsp:include page="../home/bottom.jsp"/>
 <script>
+//class="active"
 $('#2page').click(function(){
-	location.assign('${ctx}/customer.do?cmd=cus_list&page=list&page_num=2&page_size=5');
+	location.assign('${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num=2');
 	
 	//page_num, page_size, cmd, dir, page
 	//cmd=list&page=list&page_num=2&page_size=5

@@ -14,6 +14,7 @@ import service.EmployeeServiceImpl;
 
 public class CreateCommand extends Command{
 	public CreateCommand(Map<String,Proxy> pxy) {
+		super(pxy);
 		RequestProxy req = (RequestProxy) pxy.get("req");
 		HttpServletRequest request = req.getRequest();
 		switch(Action.valueOf(request.getParameter("cmd").toUpperCase())) {

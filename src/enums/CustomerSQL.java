@@ -15,11 +15,12 @@ public enum CustomerSQL {
 			sql.append("SELECT * FROM customers WHERE customer_id LIKE ? AND password LIKE ? ");
 			break;
 		case LIST :
-			sql.append("select * "
-					+ "from (select rownum rnum, c.* "
-									+ "from customers c"
-									+ " order by rnum desc)"
-					+ "where rnum between ? and ?");
+			sql.append("select * \r\n" + 
+					"from (select rownum rrnum, t.* \r\n" + 
+					"    from (select rownum rnum, c.*\r\n" + 
+					"        from customers c\r\n" + 
+					"        order by rnum desc) t)\r\n" + 
+					"where rrnum between ? and ?");
 			break;
 		case COUNT :
 			sql.append("select count(*) count from customers");

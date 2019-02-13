@@ -70,8 +70,8 @@ public class CustomerDAOImpl implements CustomerDAO{
 									.getConnection().prepareStatement(sql);
 			System.out.println("getStartRow"+page.getStartRow());
 			System.out.println("getEndRow"+page.getEndRow());
-			ps.setString(1, page.getEndRow());
-			ps.setString(2, page.getStartRow());
+			ps.setString(1, String.valueOf(page.getStartRow()));
+			ps.setString(2, String.valueOf(page.getEndRow()));
 			ResultSet rs = ps.executeQuery();
 			CustomerDTO cus = null;
 			while(rs.next()) {
