@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import domain.CustomerDTO;
 import enums.CustomerSQL;
@@ -68,8 +70,6 @@ public class CustomerDAOImpl implements CustomerDAO{
 			String sql = CustomerSQL.LIST.toString();			
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE)
 									.getConnection().prepareStatement(sql);
-			System.out.println("getStartRow"+page.getStartRow());
-			System.out.println("getEndRow"+page.getEndRow());
 			ps.setString(1, String.valueOf(page.getStartRow()));
 			ps.setString(2, String.valueOf(page.getEndRow()));
 			ResultSet rs = ps.executeQuery();
@@ -142,7 +142,6 @@ public class CustomerDAOImpl implements CustomerDAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("!!!!!!!!!!!!!!!!!!카운트값"+res);
 		return res;
 	}
 
@@ -156,6 +155,28 @@ public class CustomerDAOImpl implements CustomerDAO{
 	public void removeCustomer(CustomerDTO cus) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public Map<String, Object> selectPhone(Proxy pxy) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		try {
+			String sql = CustomerSQL.TEST.toString();
+			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			CustomerDTO cus = null;
+			while(rs.next()) {
+				cus = new CustomerDTO();
+				String entry = rs.getString("customer_id");
+				cus.setCustomerID(rs.getString("customer_id"));
+				cus.setCustomerName(rs.getString("customer_name"));
+				cus.setPhone(rs.getString("phone"));
+				map.put(entry, cus);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
 	}
 
 

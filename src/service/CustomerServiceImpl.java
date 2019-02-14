@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import dao.CustomerDAOImpl;
 import domain.CustomerDTO;
@@ -56,6 +57,11 @@ public class CustomerServiceImpl implements CustomerService{
 			res = true;
 		}
 		return res;
+	}
+	@Override
+	public Map<String, Object> retreivePhone(Proxy pxy) {
+		
+		return dao.selectPhone(pxy);
 	}
 
 }

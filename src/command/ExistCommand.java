@@ -36,6 +36,7 @@ public class ExistCommand extends Command{
 				pagePxy.carryOut(paging);
 				List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(pagePxy);
 				request.setAttribute("list", list);
+				request.setAttribute("pagination", paging);
 			}else {
 				System.out.println("접속 불가");
 				super.setDomain("home");
