@@ -30,7 +30,6 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 			psmt.setString(4, emp.getPhoto());
 			psmt.setString(5, emp.getNote());
 			int rs = psmt.executeUpdate();
-			
 			System.out.println((rs==1) ? "입력성공" : "입력실패");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

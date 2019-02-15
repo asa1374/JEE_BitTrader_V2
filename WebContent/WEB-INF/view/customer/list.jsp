@@ -26,9 +26,9 @@
 	  </tr>
 	  <c:forEach items="${list}" var="cust" >
 		  <tr>
-		    <td id="count">${cust.count}</td>
+		    <td>${cust.count}</td>
 		    <td>${cust.customerID}</td>
-		    <td>${cust.customerName}</td>
+		    <td><a href="${ctx}/customer.do?cmd=cust_retrieve&page=detail&customerID=${cust.customerID}">${cust.customerName}</a></td>
 		    <td>${cust.ssn}</td>
 		    <td>남</td>
 		    <td>${cust.phone}</td>
@@ -46,7 +46,15 @@
 		  <a href='${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num=${pagination.prevBlock}' >&laquo;</a>
 	  </c:if>
 	  <c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" varStatus="status" >
-		  <a href="#" class="page">${status.index }</a>
+		  <c:choose>
+		  	<c:when test="${pagination.pageNum eq status.index }">
+		  		<a href="#" class="page active">${status.index }</a>
+		  	</c:when>
+		  	<c:otherwise>
+		  		<a href="#" class="page">${status.index }</a>
+		  	</c:otherwise>	
+		  </c:choose>
+		  
 	  </c:forEach>
 	  <c:if test="${pagination.existnext }">
 		  <a href='${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num=${pagination.nextBlock}' class="posblock">&raquo;</a>
@@ -58,14 +66,11 @@
 <jsp:include page="../home/bottom.jsp"/>
 <script>
 //class="active"
-
-
 $('.page').each(function( index ){
 	$(this).click(function(){	
 		location.assign('${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num='+$(this).text());
 	});
 });
-
 
 /* $('#2page').click(function(){
 	location.assign('${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num=2');

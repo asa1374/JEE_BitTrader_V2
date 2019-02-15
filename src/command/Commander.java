@@ -17,7 +17,6 @@ public class Commander {
 			cmd = new Command(pxy);
 			break;
 		case REGISTER : case SIGNUP :
-			System.out.println("커멘더에서 등록하는곳$$$$$$$$$$");
 			cmd = new CreateCommand(pxy);
 			break;
 		case ACCESS : case SIGNIN :
@@ -25,6 +24,9 @@ public class Commander {
 			break;
 		case CUS_LIST :
 			cmd = new ListCommand(pxy);
+			break;
+		case CUST_RETRIEVE :
+			cmd = new RetrieveCommand(pxy);
 			break;
 		default:
 			break;

@@ -10,9 +10,9 @@
 #content{
     grid-column-start: 2;
     grid-column-end: 5;
+    font-family: 'Jua', sans-serif;
 }
 #cust_tab {
-  font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -20,9 +20,10 @@
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-family: 'East Sea Dokdo', cursive; 
 }
 #cust_tab tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #e5b9b9;
 }
 .center {
   text-align: center;

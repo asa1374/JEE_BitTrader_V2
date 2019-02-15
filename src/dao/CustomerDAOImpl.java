@@ -2,7 +2,6 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,9 +20,8 @@ public class CustomerDAOImpl implements CustomerDAO{
 	private CustomerDAOImpl() {}
 	public static CustomerDAOImpl getInstance() {return instance;}
 	@Override
-	//customerID,customerName,password,address,city,postalCode,ssn
 	public void resistCustomer(CustomerDTO cus) {
-		try {//customer_id,customer_name,password,address,city,postal_code,ssn,phone
+		try {
 			String sql = CustomerSQL.SIGNUP.toString();
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
 			ps.setString(1, cus.getCustomerID());
@@ -57,7 +55,6 @@ public class CustomerDAOImpl implements CustomerDAO{
 				ok = true;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ok;
@@ -67,9 +64,8 @@ public class CustomerDAOImpl implements CustomerDAO{
 		List<CustomerDTO> list = new ArrayList<>();
 		try {
 			Pagination page = ((PageProxy)pxy).getPage();
-			String sql = CustomerSQL.LIST.toString();			
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE)
-									.getConnection().prepareStatement(sql);
+									.getConnection().prepareStatement(CustomerSQL.LIST.toString());
 			ps.setString(1, String.valueOf(page.getStartRow()));
 			ps.setString(2, String.valueOf(page.getEndRow()));
 			ResultSet rs = ps.executeQuery();
@@ -87,16 +83,13 @@ public class CustomerDAOImpl implements CustomerDAO{
 					list.add(cus);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(list.size());
 		return list;
 	}
 
 	@Override
 	public List<CustomerDTO> selectCategoris(Proxy pxy) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -104,25 +97,41 @@ public class CustomerDAOImpl implements CustomerDAO{
 	public CustomerDTO selectCustomer(CustomerDTO cus) {
 		CustomerDTO cust = null;
 		try {
-			String sql = CustomerSQL.SIGNIN.toString();
-			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection()
-			.prepareStatement(sql);
-			ps.setString(1, cus.getCustomerID());
-			ps.setString(2, cus.getPassword());
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				cust = new CustomerDTO();
-				cust.setCustomerID(rs.getString("CUSTOMER_ID"));
-				cust.setCustomerName(rs.getString("CUSTOMER_NAME"));
-				cust.setPassword(rs.getString("PASSWORD"));
-				cust.setAddress(rs.getString("ADDRESS"));
-				cust.setCity(rs.getString("CITY"));
-				cust.setPostalCode(rs.getString("POSTAL_CODE"));
-				cust.setSsn(rs.getString("SSN"));
-				cust.setPhone(rs.getString("PHONE"));
+			String pass = cus.getPassword();
+			if(pass!=null) {
+				PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection()
+						.prepareStatement(CustomerSQL.SIGNIN.toString());
+				ps.setString(1, cus.getCustomerID());
+				ps.setString(2, cus.getPassword());
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					cust = new CustomerDTO();
+					cust.setCustomerID(rs.getString("CUSTOMER_ID"));
+					cust.setCustomerName(rs.getString("CUSTOMER_NAME"));
+					cust.setPassword(rs.getString("PASSWORD"));
+					cust.setAddress(rs.getString("ADDRESS"));
+					cust.setCity(rs.getString("CITY"));
+					cust.setPostalCode(rs.getString("POSTAL_CODE"));
+					cust.setSsn(rs.getString("SSN"));
+					cust.setPhone(rs.getString("PHONE"));
+				}
+			}else {
+				PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection()
+						.prepareStatement(CustomerSQL.RETRIEVE.toString());
+				ps.setString(1, cus.getCustomerID());
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+					cust = new CustomerDTO();
+					cust.setCustomerID(rs.getString("CUSTOMER_ID"));
+					cust.setCustomerName(rs.getString("CUSTOMER_NAME"));
+					cust.setAddress(rs.getString("ADDRESS"));
+					cust.setCity(rs.getString("CITY"));
+					cust.setPostalCode(rs.getString("POSTAL_CODE"));
+					cust.setSsn(rs.getString("SSN"));
+					cust.setPhone(rs.getString("PHONE"));
+				}
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return cust;
@@ -147,13 +156,11 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public void modifyCustomer(CustomerDTO cus) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void removeCustomer(CustomerDTO cus) {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
@@ -172,8 +179,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 				cus.setPhone(rs.getString("phone"));
 				map.put(entry, cus);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return map;

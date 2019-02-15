@@ -17,8 +17,6 @@ public class Carrier {
 		req.carryOut(request);
 		resp.carryOut(response);
 		System.out.println("Receiver의 뷰 정보"+ Receiver.cmd.getView());
-		System.out.println("req.getRequest()   "+req.getRequest());
-		System.out.println("resp.getResponse()  "+resp.getResponse());
 		request.getRequestDispatcher(Receiver.cmd.getView()).forward(request, response);
 	}
 }

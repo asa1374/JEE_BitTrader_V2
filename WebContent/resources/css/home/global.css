@@ -10,6 +10,7 @@
   border: 1px solid rgba(251, 108, 108, 0.8);
   padding: 5px; 
   text-align: center;
+  font-family: 'Jua', sans-serif;
 }
 #wrapper{
 	font-size: 30px;
@@ -17,6 +18,7 @@
 #header{
     grid-column-start: 1;
     grid-column-end: 5;
+    font-family: 'Jua', sans-serif;
 }
 #side_menu{
     grid-column-start: 1;
@@ -29,4 +31,10 @@
 #footer{
     grid-column-start: 1;
     grid-column-end: 5;
+    font-family: 'Jua', sans-serif;
 }
+/*font-family: 'Jua', sans-serif;
+font-family: 'Cute Font', cursive;
+font-family: 'East Sea Dokdo', cursive; 
+font-family: 'Hi Melody', cursive;
+*/

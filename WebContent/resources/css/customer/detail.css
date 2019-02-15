@@ -1,0 +1,33 @@
+@charset "UTF-8";
+#side_menu{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    background-color: #fff;
+}
+.detail{
+	grid-column-start: 2;
+    grid-column-end: 5;
+	border: 1px solid rgba(251, 108, 108, 0.8);
+	padding: 5px; 
+	text-align: center;
+}
+.grid-detail {
+  display: grid;
+  grid-gap: 5px; 
+  grid-template-columns: auto auto auto auto;
+  padding: 5px;
+}
+#left-detail{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: #fff;
+    border:#fff;
+    font-family: 'Hi Melody', cursive;
+}
+#right-detail{
+    grid-column-start: 3;
+    grid-column-end: 5;
+    background-color: #fff;
+    border:#fff;
+    font-family: 'East Sea Dokdo', cursive;
+}

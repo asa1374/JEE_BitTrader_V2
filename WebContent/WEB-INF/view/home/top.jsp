@@ -10,6 +10,8 @@
 	<title>비트 리테일</title>
 	<link rel="stylesheet" href="${css}/home/reset.css "/> 
 	<link rel="stylesheet" href="${css}/home/global.css" />
+	<link href="https://fonts.googleapis.com/css?family=Cute+Font|East+Sea+Dokdo|Jua|Nanum+Brush+Script&amp;subset=korean" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
