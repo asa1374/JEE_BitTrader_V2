@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -156,7 +157,22 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public void modifyCustomer(CustomerDTO cus) {
-		
+		try {//1 password 2 phone 3 addr 4 city 5 postal_code 6 customerid
+			String sql = CustomerSQL.UPDATE.toString();
+			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
+			ps.setString(1, cus.getPassword());
+			ps.setString(2, cus.getPhone());
+			ps.setString(3, cus.getAddress());
+			ps.setString(4, cus.getCity());
+			ps.setString(5, cus.getPostalCode());
+			ps.setString(6, cus.getCustomerID());
+			int a = ps.executeUpdate();
+			if(a==1) {
+				System.out.println("입력성공");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

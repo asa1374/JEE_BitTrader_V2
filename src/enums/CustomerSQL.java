@@ -2,7 +2,7 @@ package enums;
 //CUSTOMER_ID,password,CONTACT_NAME
 //ADDRESS,CITY,POSTAL_CODE,ssn
 public enum CustomerSQL {
-	SIGNUP,SIGNIN,LIST,COUNT,TEST,RETRIEVE;
+	SIGNUP,SIGNIN,LIST,COUNT,TEST,RETRIEVE,UPDATE;
 	@Override
 	public String toString() {
 		StringBuffer sql = new StringBuffer();
@@ -30,6 +30,11 @@ public enum CustomerSQL {
 			break;
 		case RETRIEVE :
 			sql.append("select * from customers where customer_id like ?");
+			break;
+		case UPDATE:
+			sql.append("update customers\n" + 
+					"set password = ?, phone = ?,address = ?,city = ?,postal_code = ?\n" + 
+					"where customer_id  like ?");
 			break;
 		default :
 			break;

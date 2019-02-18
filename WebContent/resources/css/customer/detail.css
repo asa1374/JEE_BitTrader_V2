@@ -1,7 +1,21 @@
 @charset "UTF-8";
+#nav{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
 #side_menu{
     grid-column-start: 1;
     grid-column-end: 2;
+    background-color: #fff;
+}
+#update{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: #fff;
+}
+#delete{
+    grid-column-start: 3;
+    grid-column-end: 5;
     background-color: #fff;
 }
 .detail{
