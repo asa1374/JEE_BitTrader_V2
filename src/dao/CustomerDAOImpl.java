@@ -1,24 +1,29 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import domain.CustomerDTO;
+import domain.ImageDTO;
 import enums.CustomerSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
+import proxy.ImageProxy;
 import proxy.PageProxy;
 import proxy.Pagination;
 import proxy.Proxy;
 
 public class CustomerDAOImpl implements CustomerDAO{
 	private static CustomerDAOImpl instance = new CustomerDAOImpl();
-	private CustomerDAOImpl() {}
+	Connection conn;
+	private CustomerDAOImpl() {
+		conn = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection();
+	}
 	public static CustomerDAOImpl getInstance() {return instance;}
 	@Override
 	public void resistCustomer(CustomerDTO cus) {
@@ -200,6 +205,24 @@ public class CustomerDAOImpl implements CustomerDAO{
 		}
 		return map;
 	}
-
-
+	public CustomerDTO selectProfile(Proxy pxy) {
+		CustomerDTO cus = null;
+		try {
+			ImageProxy ipxy = (ImageProxy)pxy;
+			ImageDAOImpl.getInstance().createImage((ipxy).getImg());
+			String imgSeq = ImageDAOImpl.getInstance().lastImageSeq();
+			
+			String sql = "UPDATE CUSTOMERS SET PHOTO = ? WHERE CUSTOMER_ID LIKE ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, imgSeq);
+			ps.setString(2, ipxy.getImg().getOwner());
+			
+			cus.setCustomerID(ipxy.getImg().getOwner());
+			
+			cus = selectCustomer(cus);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cus;
+	}
 }

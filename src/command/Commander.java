@@ -12,6 +12,7 @@ public class Commander {
 		Command cmd = null;
 		RequestProxy req = (RequestProxy) pxy.get("req");
 		HttpServletRequest request = req.getRequest();
+		System.out.println("#######"+request.getParameter("cmd").toUpperCase());
 		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())) {
 		case MOVE: 
 			cmd = new Command(pxy);
@@ -30,6 +31,9 @@ public class Commander {
 			break;
 		case CUS_UPDATE :
 			cmd = new UpdateCommand(pxy);
+			break;
+		case CUS_FILE_UPLOAD :
+			cmd = new FileCommand(pxy);
 			break;
 		default:
 			break;
