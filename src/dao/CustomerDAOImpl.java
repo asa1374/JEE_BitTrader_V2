@@ -120,6 +120,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 					cust.setPostalCode(rs.getString("POSTAL_CODE"));
 					cust.setSsn(rs.getString("SSN"));
 					cust.setPhone(rs.getString("PHONE"));
+					cust.setPhoto(rs.getString("PHOTO"));
 				}
 			}else {
 				PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection()
@@ -135,6 +136,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 					cust.setPostalCode(rs.getString("POSTAL_CODE"));
 					cust.setSsn(rs.getString("SSN"));
 					cust.setPhone(rs.getString("PHONE"));
+					cust.setPhoto(rs.getString("PHOTO"));
 				}
 			}
 		} catch (Exception e) {
@@ -205,8 +207,10 @@ public class CustomerDAOImpl implements CustomerDAO{
 		}
 		return map;
 	}
-	public CustomerDTO selectProfile(Proxy pxy) {
-		CustomerDTO cus = null;
+	public Map<String,Object> selectProfile(Proxy pxy) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		CustomerDTO cus = new CustomerDTO();
+		ImageDTO img = new ImageDTO();
 		try {
 			ImageProxy ipxy = (ImageProxy)pxy;
 			ImageDAOImpl.getInstance().createImage((ipxy).getImg());
@@ -216,13 +220,21 @@ public class CustomerDAOImpl implements CustomerDAO{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, imgSeq);
 			ps.setString(2, ipxy.getImg().getOwner());
+			ps.executeUpdate();
 			
 			cus.setCustomerID(ipxy.getImg().getOwner());
-			
 			cus = selectCustomer(cus);
+			map.put("cus", cus);
+			String seq = cus.getPhoto();
+			
+			img.setImgseq(seq);
+			img = ImageDAOImpl.getInstance().selectImage(img);
+			map.put("img", img);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return cus;
+		return map;
 	}
 }

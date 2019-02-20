@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import dao.ImageDAOImpl;
 import domain.CustomerDTO;
 import domain.ImageDTO;
 import proxy.Proxy;
@@ -19,8 +20,9 @@ public class RetrieveCommand extends Command{
 		ImageDTO img = new ImageDTO();
 		cust.setCustomerID(request.getParameter("customerID"));
 		cust = CustomerServiceImpl.getInstance().retrieveCustomer(cust);
-		
+		img.setImgseq(cust.getPhoto());
+		img = ImageDAOImpl.getInstance().selectImage(img);
 		request.setAttribute("cust", cust);
-		request.setAttribute("img", img);
+		request.setAttribute("image", img);
 	}
 }
