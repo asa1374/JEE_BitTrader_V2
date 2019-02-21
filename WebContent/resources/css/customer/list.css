@@ -1,4 +1,22 @@
 @charset "UTF-8";
+.pro_list{
+	display: grid;
+	grid-gap: 5px; 
+	grid-template-columns: auto auto auto;
+	padding: 5px;
+}
+#pro_list{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+#pro_search{
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+#pro_update{
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
 #nav{
     grid-column-start: 1;
     grid-column-end: 5;

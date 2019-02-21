@@ -17,23 +17,26 @@ public class Commander {
 		case MOVE: 
 			cmd = new Command(pxy);
 			break;
-		case REGISTER : case SIGNUP :
+		case REGISTER : case SIGNUP : case PRO_REGIST :
 			cmd = new CreateCommand(pxy);
 			break;
 		case ACCESS : case SIGNIN :
 			cmd = new ExistCommand(pxy);
 			break;
-		case CUS_LIST :
+		case CUS_LIST : case PRO_LIST :
 			cmd = new ListCommand(pxy);
 			break;
 		case CUST_RETRIEVE :
 			cmd = new RetrieveCommand(pxy);
 			break;
-		case CUS_UPDATE :
+		case CUS_UPDATE : case PRO_UPDATE:
 			cmd = new UpdateCommand(pxy);
 			break;
 		case CUS_FILE_UPLOAD :
 			cmd = new FileCommand(pxy);
+			break;
+		case CUST_DELETE :
+			cmd = new DeleteCommand(pxy);
 			break;
 		default:
 			break;

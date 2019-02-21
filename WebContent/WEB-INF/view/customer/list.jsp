@@ -39,29 +39,29 @@
 	  </c:forEach>
 	</table>
 	<div style="height: 50px"></div>
-<form id="list_form">
-	<div class="center">
-	  <div class="pagination">
-	  <c:if test="${pagination.existPrev }">
-		  <a href='${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num=${pagination.prevBlock}' >&laquo;</a>
-	  </c:if>
-	  <c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" varStatus="status" >
-		  <c:choose>
-		  	<c:when test="${pagination.pageNum eq status.index }">
-		  		<a href="#" class="page active">${status.index }</a>
-		  	</c:when>
-		  	<c:otherwise>
-		  		<a href="#" class="page">${status.index }</a>
-		  	</c:otherwise>	
-		  </c:choose>
-		  
-	  </c:forEach>
-	  <c:if test="${pagination.existnext }">
-		  <a href='${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num=${pagination.nextBlock}' class="posblock">&raquo;</a>
-	  </c:if>
-	  </div>
-	</div>
-</form>
+	<form id="list_form">
+		<div class="center">
+		  <div class="pagination">
+		  <c:if test="${pagination.existPrev }">
+			  <a href='${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num=${pagination.prevBlock}' >&laquo;</a>
+		  </c:if>
+		  <c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" varStatus="status" >
+			  <c:choose>
+			  	<c:when test="${pagination.pageNum eq status.index }">
+			  		<a href="#" class="page active">${status.index }</a>
+			  	</c:when>
+			  	<c:otherwise>
+			  		<a href="#" class="page">${status.index }</a>
+			  	</c:otherwise>	
+			  </c:choose>
+			  
+		  </c:forEach>
+		  <c:if test="${pagination.existnext }">
+			  <a href='${ctx}/customer.do?cmd=cus_list&page=list&page_size=5&page_num=${pagination.nextBlock}' class="posblock">&raquo;</a>
+		  </c:if>
+		  </div>
+		</div>
+	</form>
 </div>
 <jsp:include page="../home/bottom.jsp"/>
 <script>

@@ -12,26 +12,22 @@ public class ProductServiceImpl implements ProductService{
 	ProductDAOImpl dao;
 	@Override
 	public void registProduct(ProductDTO pro) {
-		// TODO Auto-generated method stub
-		
+		dao.registProduct(pro); 
 	}
 
 	@Override
 	public List<ProductDTO> bringProductList() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.bringProductList();
 	}
 
 	@Override
 	public List<ProductDTO> retrieveProducts(String searchWord) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ProductDTO retrieveProduct(String searchWord) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDTO retrieveProduct(ProductDTO pro) {
+		return dao.retrieveProduct(pro);
 	}
 
 	@Override

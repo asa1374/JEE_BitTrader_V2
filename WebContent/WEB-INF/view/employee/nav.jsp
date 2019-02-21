@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="${css}/employee/nav.css" />    
-<ul id="navi_bar">
-    <li><a href="home.do">홈</a></li>
-    <li><a href="#">카테고리</a></li>
-    <li><a href="#">사원</a></li>
-    <li><a href="#">주문</a></li>
-    <li><a href="#">상품</a></li>
-    <li><a href="#">선박</a></li>
-    <li><a href="#">공급업체</a></li>
-</ul>
+<div class="navi_bar">
+    <div id="navi_bar1"><a href="home.do">홈</a></div>
+    <div id="navi_bar2"><a href="#">카테고리</a></div>
+    <div id="navi_bar3"><a href="#">사원</a></div>
+    <div id="navi_bar4"><a href="#">주문</a></div>
+    <div id="navi_bar5"><a href="${ctx}/product.do?cmd=pro_list&page=list">상품</a></div>
+    <div id="navi_bar6"><a href="#">선박</a></div>
+    <div id="navi_bar7"><a href="#">공급업체</a></div>
+</div>

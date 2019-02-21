@@ -185,6 +185,18 @@ public class CustomerDAOImpl implements CustomerDAO{
 	@Override
 	public void removeCustomer(CustomerDTO cus) {
 		
+		try {
+			String sql = "delete from customers where customer_id like ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, cus.getCustomerID());
+			int i = ps.executeUpdate();
+			if(i==1) {
+				System.out.println("삭제 성공");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public Map<String, Object> selectPhone(Proxy pxy) {

@@ -27,8 +27,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 			psmt.setString(1, emp.getManager());
 			psmt.setString(2, emp.getName());
 			psmt.setString(3, emp.getBirthDate());
-			psmt.setString(4, emp.getPhoto());
-			psmt.setString(5, emp.getNote());
+			psmt.setString(4, emp.getNote());
 			int rs = psmt.executeUpdate();
 			System.out.println((rs==1) ? "입력성공" : "입력실패");
 		} catch (Exception e) {

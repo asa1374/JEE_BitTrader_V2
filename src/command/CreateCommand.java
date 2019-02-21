@@ -1,16 +1,21 @@
 package command;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import domain.CustomerDTO;
 import domain.EmployeeDTO;
+import domain.ProductDTO;
 import enums.Action;
+import proxy.PageProxy;
+import proxy.Pagination;
 import proxy.Proxy;
 import proxy.RequestProxy;
 import service.CustomerServiceImpl;
 import service.EmployeeServiceImpl;
+import service.ProductServiceImpl;
 
 public class CreateCommand extends Command{
 	public CreateCommand(Map<String,Proxy> pxy) {
@@ -39,6 +44,23 @@ public class CreateCommand extends Command{
 			cus.setCustomerName(request.getParameter("name"));
 			cus.setPostalCode(request.getParameter("post"));
 			CustomerServiceImpl.getInstance().resistCustomer(cus);
+			break;
+		case PRO_REGIST :
+			ProductDTO pro = new ProductDTO();
+			pro.setCategoryID(request.getParameter("categoryID"));
+			pro.setPrice(request.getParameter("price"));
+			pro.setProductName(request.getParameter("productName"));
+			pro.setSupplierID(request.getParameter("supplierID"));
+			pro.setUnit(request.getParameter("unit"));
+			System.out.println(pro);
+			ProductServiceImpl.getInstance().registProduct(pro);
+			Proxy paging = new Pagination();
+			paging.carryOut(request);
+			Proxy pagePxy = new PageProxy();
+			pagePxy.carryOut(paging);
+			List<ProductDTO> prolist = ProductServiceImpl.getInstance().bringProductList();
+			request.setAttribute("list", prolist);
+			request.setAttribute("pagination", paging);
 			break;
 		default:
 			break;

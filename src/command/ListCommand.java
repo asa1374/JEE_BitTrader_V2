@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import domain.CustomerDTO;
+import domain.ProductDTO;
 import enums.Action;
 import proxy.PageProxy;
 import proxy.Pagination;
 import proxy.Proxy;
 import proxy.RequestProxy;
 import service.CustomerServiceImpl;
+import service.ProductServiceImpl;
 
 public class ListCommand extends Command{
 	public ListCommand(Map<String,Proxy> pxy) {
@@ -27,7 +29,15 @@ public class ListCommand extends Command{
 			request.setAttribute("list", list);
 			request.setAttribute("pagination", paging);
 			break;
-			
+		case PRO_LIST:
+			paging = new Pagination();
+			paging.carryOut(request);
+			pagePxy = new PageProxy();
+			pagePxy.carryOut(paging);
+			List<ProductDTO> prolist = ProductServiceImpl.getInstance().bringProductList();
+			request.setAttribute("list", prolist);
+			request.setAttribute("pagination", paging);
+			break;	
 		default:
 			break;
 		}

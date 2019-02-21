@@ -15,22 +15,18 @@
 </div>
 <div class="detail">
 	<div class="grid-detail">
-		<div id="left-detail">아이디</div>
-		<div id="right-detail">${cust.customerID}</div>
-		<div id="left-detail">이 름</div>
-		<div id="right-detail">${cust.customerName}</div>
-		<div id="left-detail">생년월일</div>
-		<div id="right-detail">${cust.ssn}</div>
-		<div id="left-detail">성 별</div>
-		<div id="right-detail">남</div>
-		<div id="left-detail">전화번호</div>
-		<div id="right-detail">${cust.phone}</div>
-		<div id="left-detail">우편번호</div>
-		<div id="right-detail">${cust.postalCode}</div>
-		<div id="left-detail">지번주소</div>
-		<div id="right-detail">${cust.city}</div>
-		<div id="left-detail">상세주소</div>
-		<div id="right-detail">${cust.address}</div>
+		<div id="left-detail">No.</div>
+		<div id="right-detail"><input type="text" name="productID" value="${prolist.productID}" readonly="readonly" /></div>
+		<div id="left-detail">상품 이름</div>
+		<div id="right-detail"><input type="text" name="productName" placeholder="${prolist.productName}" /></div>
+		<div id="left-detail">제조사 ID</div>
+		<div id="right-detail"><input type="text" name="supplierID" value="${prolist.supplierID}"  readonly="readonly" /></div>
+		<div id="left-detail">카테고리 ID</div>
+		<div id="right-detail"><input type="text" name="categoryID" placeholder="${prolist.categoryID}" /></div>
+		<div id="left-detail">수량</div>
+		<div id="right-detail"><input type="text" name="unit" placeholder="${prolist.unit}" /></div>
+		<div id="left-detail">가격</div>
+		<div id="right-detail"><input type="text" name="price" placeholder="${prolist.price}"/></div>
 	</div>
 </div>
 <div class="grid-item" id="photo">
