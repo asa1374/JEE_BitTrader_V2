@@ -12,7 +12,6 @@ public class Commander {
 		Command cmd = null;
 		RequestProxy req = (RequestProxy) pxy.get("req");
 		HttpServletRequest request = req.getRequest();
-		System.out.println("#######"+request.getParameter("cmd").toUpperCase());
 		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())) {
 		case MOVE: 
 			cmd = new Command(pxy);
@@ -23,7 +22,7 @@ public class Commander {
 		case ACCESS : case SIGNIN :
 			cmd = new ExistCommand(pxy);
 			break;
-		case CUS_LIST : case PRO_LIST :
+		case CUS_LIST : case PRO_LIST : case CATE_LIST:
 			cmd = new ListCommand(pxy);
 			break;
 		case CUST_RETRIEVE :

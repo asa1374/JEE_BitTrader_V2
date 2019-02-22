@@ -4,6 +4,7 @@ import java.util.List;
 import dao.CategoryDAO;
 import dao.CategoryDAOImpl;
 import domain.CategoryDTO;
+import proxy.Proxy;
 
 public class CategoryServiceImpl implements CategoryService{
 	private static CategoryServiceImpl instance = new CategoryServiceImpl();
@@ -17,9 +18,8 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
-	public List<CategoryDTO> bringCategoryList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<?> bringCategoryList(Proxy pxy) {
+		return dao.selectCategoris(pxy);
 	}
 
 	@Override
@@ -46,9 +46,8 @@ public class CategoryServiceImpl implements CategoryService{
 		
 	}
 	@Override
-	public int countCategory() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countCategory(Proxy pxy) {
+		return dao.countCategory(pxy);
 	}
 
 }

@@ -16,7 +16,7 @@ public class Carrier {
 		ResponeseProxy resp = new ResponeseProxy();
 		req.carryOut(request);
 		resp.carryOut(response);
-		System.out.println("Receiver의 뷰 정보"+ Receiver.cmd.getView());
+		System.out.println("케리어의 뷰 정보"+ Receiver.cmd.getView());
 		request.getRequestDispatcher(Receiver.cmd.getView()).forward(request, response);
 	}
 }

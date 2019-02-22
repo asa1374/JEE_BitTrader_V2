@@ -10,19 +10,23 @@ import java.util.List;
 import java.util.Map;
 
 import domain.ProductDTO;
+import enums.ProductSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
+import proxy.PageProxy;
+import proxy.Pagination;
+import proxy.Proxy;
 
 public class ProductDAOImpl implements ProductDAO{
 	private static ProductDAOImpl instance = new ProductDAOImpl();
 	Connection conn;
 	private ProductDAOImpl() {conn = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection();}
 	public static ProductDAOImpl getInstance() {return instance;}
+	
 	@Override
 	public void registProduct(ProductDTO pro) {
 		try {
-			String sql = "insert into Products(PRODUCT_ID,PRODUCT_NAME,SUPPLIER_ID,CATEGORY_ID,UNIT,PRICE)\n" + 
-					"values(PRODUCT_ID.NEXTVAL,?,?,?,?,?)";
+			String sql = ProductSQL.REGISTER.toString();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, pro.getProductName());
 			ps.setString(2, pro.getSupplierID());
@@ -40,12 +44,15 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public List<ProductDTO> bringProductList() {
+	public List<ProductDTO> bringProductList(Proxy pxy) {
 		List<ProductDTO> list = new ArrayList<>();
 		ProductDTO pro = null;
 		try {
-			String sql = "select * from products";
+			Pagination page = ((PageProxy)pxy).getPage();
+			String sql = ProductSQL.LIST.toString();
 			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, String.valueOf(page.getStartRow()));
+			ps.setString(2, String.valueOf(page.getEndRow()));
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				pro = new ProductDTO();
@@ -65,7 +72,7 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public List<ProductDTO> retrieveProducts(String searchWord) {
+	public List<ProductDTO> retrieveProducts(Proxy pxy) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -95,9 +102,20 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public int countProduct() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countProduct(Proxy pxy) {
+		int count = 0;
+		try {
+			String sql = "select count(*) count from products";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 	@Override

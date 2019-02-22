@@ -1,5 +1,6 @@
 package command;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import domain.CustomerDTO;
 import domain.ProductDTO;
 import enums.Action;
+import proxy.PageProxy;
+import proxy.Pagination;
 import proxy.Proxy;
 import proxy.RequestProxy;
 import service.CustomerServiceImpl;
@@ -38,6 +41,14 @@ public class UpdateCommand extends Command{
 			pro.setProductID(request.getParameter("productID"));
 			pro = ProductServiceImpl.getInstance().retrieveProduct(pro);
 			request.setAttribute("prolist", pro);
+			
+			Proxy paging = new Pagination();
+			paging.carryOut(request);
+			Proxy pagePxy = new PageProxy();
+			pagePxy.carryOut(paging);
+			List<?> prolist = ProductServiceImpl.getInstance().bringProductList(pagePxy);
+			request.setAttribute("list", prolist);
+			request.setAttribute("pagination", paging);
 			break;
 		default:
 			break;

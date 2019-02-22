@@ -41,11 +41,11 @@
 <jsp:include page="../home/bottom.jsp"/>
 <script>
 $('#update_btn').attr('style','cursor:pointer').click(function(){
-	location.assign('${ctx}/customer.do?cmd=cust_retrieve&page=update&customerID=${cust.customerID}');
+	location.assign('${ctx}/product.do?cmd=pro_update&page=list&productID=${prolist.productID}');
 });
 $('#delete_btn').attr('style','cursor:pointer').click(function(){
 	alert('삭제버튼클릭');
-	location.assign('${ctx}/customer.do?cmd=cust_delete&dir=home&page=main&customerID=${cust.customerID}');
+	location.assign('${ctx}/customer.do?cmd=cust_delete&dir=home&page=main&productID=${prolist.productID}');
 });
 $('#file_upload_btn').attr('style','cursor:pointer').click(function(){
 	alert('사진업로드 클릭');

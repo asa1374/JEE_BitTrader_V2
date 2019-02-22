@@ -58,7 +58,7 @@ public class CreateCommand extends Command{
 			paging.carryOut(request);
 			Proxy pagePxy = new PageProxy();
 			pagePxy.carryOut(paging);
-			List<ProductDTO> prolist = ProductServiceImpl.getInstance().bringProductList();
+			List<?> prolist = ProductServiceImpl.getInstance().bringProductList(pagePxy);
 			request.setAttribute("list", prolist);
 			request.setAttribute("pagination", paging);
 			break;

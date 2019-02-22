@@ -1,9 +1,16 @@
 package proxy;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import domain.CustomerDTO;
+import domain.ProductDTO;
+import enums.Action;
 import lombok.Data;
+import service.CategoryServiceImpl;
 import service.CustomerServiceImpl;
+import service.ProductServiceImpl;
 
 @Data
 public class Pagination implements Proxy{
@@ -17,7 +24,20 @@ public class Pagination implements Proxy{
 		pageNum = (request.getParameter("page_num")==null)?1:Integer.parseInt(request.getParameter("page_num"));
 		blockSize = (request.getParameter("block_size")==null)?5:Integer.parseInt(request.getParameter("block_size"));
 		blockNum = (request.getParameter("block_num")==null)?0:Integer.parseInt(request.getParameter("block_num"));
-		totalCount = CustomerServiceImpl.getInstance().countCustomer(null);
+		
+		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())) {
+		case ACCESS : case CUS_LIST: 
+			totalCount = CustomerServiceImpl.getInstance().countCustomer(null);
+			break;
+		case PRO_LIST: case PRO_REGIST :
+			totalCount = ProductServiceImpl.getInstance().countProduct(null);
+			break;	
+		case CATE_LIST:
+			totalCount = CategoryServiceImpl.getInstance().countCategory(null);
+			break;
+		default:
+			break;
+		}
 		
 		startRow = pageSize*(pageNum-1)+1;
 		endRow = pageNum * pageSize;

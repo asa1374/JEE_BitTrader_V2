@@ -17,9 +17,9 @@ public enum CustomerSQL {
 		case LIST :
 			sql.append("select * \r\n" + 
 					"from (select rownum rrnum, t.* \r\n" + 
-					"    from (select rownum rnum, c.*\r\n" + 
-					"        from customers c\r\n" + 
-					"        order by rnum desc) t)\r\n" + 
+						"from (select rownum rnum, c.*\r\n" + 
+							"from customers c\r\n" + 
+							"order by rnum desc) t)\r\n" + 
 					"where rrnum between ? and ?");
 			break;
 		case COUNT :

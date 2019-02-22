@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.ProductDAOImpl;
 import domain.ProductDTO;
+import proxy.Proxy;
 
 public class ProductServiceImpl implements ProductService{
 	private static ProductServiceImpl instance = new ProductServiceImpl();
@@ -16,12 +17,12 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductDTO> bringProductList() {
-		return dao.bringProductList();
+	public List<ProductDTO> bringProductList(Proxy pxy) {
+		return dao.bringProductList(pxy);
 	}
 
 	@Override
-	public List<ProductDTO> retrieveProducts(String searchWord) {
+	public List<ProductDTO> retrieveProducts(Proxy pxy) {
 		return null;
 	}
 
@@ -31,9 +32,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int countProduct() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countProduct(Proxy pxy) {
+		return dao.countProduct(pxy);
 	}
 
 	@Override
