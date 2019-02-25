@@ -56,5 +56,10 @@ public class Pagination implements Proxy{
 		existnext = (pageCount<=(startPage + pageSize))?false:true;
 		prevBlock = startPage - pageSize;
 		nextBlock = startPage + pageSize;
+		System.out.println(totalCount);
+		System.out.println("pageCountpageCount"+pageCount);
+		System.out.println("startPage + pageSize"+startPage + pageSize);
+		System.out.println("프리"+existPrev);
+		System.out.println(existnext);
 	}
 }
