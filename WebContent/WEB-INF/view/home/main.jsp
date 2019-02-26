@@ -38,6 +38,7 @@ $('#cust_join').click(function(){
 	location.assign('customer.do?cmd=move&page=signup');
 });
 $('#oop_access').click(function(){
-	app.main();
+	//encap.main();
+	inherit.main();
 });
 </script>
