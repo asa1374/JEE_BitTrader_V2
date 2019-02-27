@@ -39,6 +39,7 @@ $('#cust_join').click(function(){
 });
 $('#oop_access').click(function(){
 	//encap.main();
-	inherit.main();
+	//inherit.main();
+	test1.main();
 });
 </script>

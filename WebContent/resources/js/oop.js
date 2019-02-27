@@ -1,4 +1,44 @@
-//상속
+//상속 하기전에 간단한 예제 2
+function People(name,age,gender,job){
+	this.name = name;
+	this.age = age;
+	this.gender = gender;
+	this.job = job;
+}
+
+function Customer(name,age,gender,job,grade,custNo){
+	People.call(this,name,age,gender,job);
+	this.grade = grade;
+	this.custNo = custNo;
+}
+
+var test1 = (()=>{
+	return {main : ()=>{
+			let cust = new Customer('이창준','27','남자','개발자','3급','123');
+			alert(cust.name +','+cust.age+','+cust.gender+','+cust.job+','+cust.grade+','+cust.custNo);
+		}
+	};
+})();
+/*//상속 하기전에 간단한 예제 1
+function Prodoct(name,price){
+	this.name = name;
+	this.price = price;
+}
+function Food(name, price){
+	Prodoct.call(this,name,price);
+	this.category = 'food';
+}
+
+var test = (()=>{
+	return {main : ()=>{
+		var foo = new Food('cheese',5);
+		alert(foo.name+','+foo.price+','+foo.category);
+		alert(foo.name);
+		}
+	};
+})();
+
+
 var inherit = (()=>{
 	return {
 		main : ()=>{
@@ -33,7 +73,7 @@ function Customer(){
 		setGrade :(grade)=>{this._grade = grade;},
 		getGrade :()=>{return this._grade;}
 	};
-};
+};*/
 
 //은닉
 /*var encap = (function (){
